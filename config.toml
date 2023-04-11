@@ -1,4 +1,4 @@
-baseURL = 'http://marianogappa.github.com/'
+baseURL = 'https://marianogappa.github.io/iknowkungfoo/'
 languageCode = 'en-us'
 title = 'I know Kung Foo'
 theme = 'beautifulhugo'
