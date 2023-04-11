@@ -1,0 +1,4 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'I know Kung Fu'
+theme = 'beautifulhugo'
