@@ -25,7 +25,7 @@ func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	// Get the input and output paths from command-line arguments
 	if len(os.Args) != 3 {
-		fmt.Println("Usage: go run script.go input_path output_path")
+		fmt.Println("Usage: go run update_leetcodes.go input_path output_path")
 		os.Exit(1)
 	}
 	inputPath := os.Args[1]
