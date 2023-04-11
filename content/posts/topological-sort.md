@@ -7,7 +7,7 @@ draft: false
 
 In Starcraft, what order of buildings do you need to build so that you can build the Arbiter Tribunal?
 
-![Protoss dependency graph](/topology_sort/protoss_dependency_graph.png)
+![Protoss dependency graph](/iknowkungfoo/topological_sort/protoss_dependency_graph.png)
 
 
 Answer: Nexus, Gateway, Cybernetics Core, Citadel of Adun, Stargate, Templar Archives, Arbiter Tribunal
@@ -71,7 +71,9 @@ The algorithm gets one possible order. Typically, leetcodes clarify that order d
 ## Appendix: Other tutorials online
 
 [GeeksForGeeks](https://www.geeksforgeeks.org/topological-sorting/)
+
 [William Fiset (YouTube)](https://www.youtube.com/watch?v=eL-KzMXSXXI)
+
 [Interview Cake](https://www.interviewcake.com/concept/java/topological-sort)
 
 ## Appendix: Related Leetcodes
