@@ -81,3 +81,5 @@ func main() {
 	}
 	fmt.Println("Done!")
 }
+
+// go run update_leetcodes.go /Users/marianol/Code/leetcode/2022/ ../content/leetcode

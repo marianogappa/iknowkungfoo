@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div role="main" class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {{ with .Content }}
+            <div class="well">
+                {{.}}
+            </div>
+            {{ end }}
+
+            {{ range slice "coding" "systemDesign" "leetcode" }}
+            <h2>{{ . | title }}</h2>
+            <div class="posts-list">
+                {{ range where $.Site.Pages "Type" . }}
+                <div><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+                {{end}}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
