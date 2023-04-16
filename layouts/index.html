@@ -12,7 +12,9 @@
             <h2>{{ . | title }}</h2>
             <div class="posts-list">
                 {{ range where $.Site.Pages "Type" . }}
+                {{ if and (and (ne .Title "Coding") (ne .Title "SystemDesign")) (ne .Title "Leetcode") }}
                 <div><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+                {{end}}
                 {{end}}
             </div>
             {{ end }}

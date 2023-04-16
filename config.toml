@@ -2,3 +2,4 @@ baseURL = 'https://marianogappa.github.io/iknowkungfoo/'
 languageCode = 'en-us'
 title = 'I know Kung Foo'
 theme = 'beautifulhugo'
+pluralizeListTitles = false
