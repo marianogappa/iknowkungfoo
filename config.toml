@@ -3,3 +3,4 @@ languageCode = 'en-us'
 title = 'I know Kung Foo'
 theme = 'beautifulhugo'
 pluralizeListTitles = false
+googleAnalytics = 'G-182NER5KWF'
