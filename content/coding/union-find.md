@@ -15,7 +15,7 @@ Examples:
 - [Number of islands](https://leetcode.com/problems/number-of-islands/) (or "Battleships"): Count connected '1’s in a binary grid.
 - [Accounts Merge](https://leetcode.com/problems/accounts-merge): Merge accounts by email. Each account has a name and some emails.
 
-Algorithm idea:
+## Algorithm idea
 
 - Given a graph of vertices and edges, we think of it as a "forest": many isolated/disjoint trees of vertices, where the edges define parent/children relationships.
 - Use `add` to add a vertex, which will start isolated as its own tree in the forest.
