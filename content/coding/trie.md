@@ -6,6 +6,7 @@ draft: false
 ## Intuition
 
 How would you implement an autocomplete feature? On every letter typed, check all words on a list that start with that prefix? 😱
+
 Ideally organise the words by prefix, so all words with any prefix are clustered. Of course, many prefixes overlap, so we'll need a tree structure, branching on every letter of the prefix.
 
 ## Algorithm idea
@@ -54,8 +55,6 @@ class TrieNode:
             words.extend(self.children[char].collect_words(prefix + char))
         return words
 ```
-
-### 🧠 Pro tips!
 
 ## Done 🎉🎉🎉
 
