@@ -2,11 +2,8 @@
 <div role="main" class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            {{ with .Content }}
-            <div class="well">
-                {{.}}
-            </div>
-            {{ end }}
+            <div>This is NOT a guide for studying for interviews. It's for re-learning (or de-rustying) the
+                harder things as quickly as possible, like Neo learning Kung Fu.</div>
 
             {{ range slice "coding" "systemDesign" "leetcode" }}
             <h2>{{ . | title }}</h2>
