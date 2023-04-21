@@ -5,6 +5,14 @@
             <div>This is NOT a guide for studying for interviews. It's for re-learning (or de-rustying) the
                 harder things as quickly as possible, like Neo learning Kung Fu.</div>
 
+            {{ range $title, $list := .Site.Data.usefulLinks }}
+            <h2>Useful Links ({{ $title }})</h2>
+            <div class="posts-list">
+                {{ range $list }}
+                <div><a href="{{ .permalink }}">{{ .title }}</a></div>
+                {{ end }}
+            </div>
+            {{ end }}
             {{ range slice "coding" "systemDesign" "leetcode" }}
             <h2>{{ . | title }}</h2>
             <div class="posts-list">
