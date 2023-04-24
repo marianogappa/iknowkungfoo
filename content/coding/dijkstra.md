@@ -9,6 +9,15 @@ How do you find the shortest path from your home to your work in the city map? (
 
 Dijkstra calculates this, but requires an "adjacency list" (check below section). 
 
+## Algorithm idea
+
+![Dijkstra](/iknowkungfoo/dijkstra/dijkstra.png)
+
+- Dijkstra calculates the minimum distance from an origin vertex (e.g. `A`) to *EVERY* vertex in the graph!
+- Start with direct edges: `min distance to B = 4`, `min distance to C = 5`. Keep track of these min distances in a `dict`.
+- As you check indirect edges (e.g. `B -> E`), the min distance is now `B -> E` (7) + `min distance to B` (4) = 11.
+- As you traverse, you might find more than one result for a vertex. Greedily overwrite min distances with lowest. Done 💥!
+
 ## Algorithm
 
 ```python
