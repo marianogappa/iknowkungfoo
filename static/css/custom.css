@@ -12,3 +12,7 @@ h3 {
     margin-top: 30px;
     margin-bottom: 20px;
 }
+
+.intro-header {
+    margin: 0;
+}
