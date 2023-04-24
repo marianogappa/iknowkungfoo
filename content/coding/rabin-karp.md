@@ -16,12 +16,12 @@ Can we do it faster?
 
 ## Algorithm idea
 
-- Start by doing the same, but instead of `s1 == s2`, do `hash(s1) == hash(s2)`. We'll see which `hash()` works.
+- Start by doing the same, but instead of `text[] == pattern`, do `hash(text[]) == hash(pattern)`. Which `hash()`? 🤔
 - Note that `hash(pattern)` never changes, so only compute it once: `O(p)` so far.
 - First time, compare with `hash(text[:len(pattern)])`, again `O(p)`.
-- 🤯: instead of a new `O(p)` hash as we slide, *update* the hash in `O(1)` by removing the first character and adding the new character.
+- 🤯: instead of a new `O(p)` hash as we slide, *update* the hash in `O(1)` by removing the evicting character and adding the incoming character to the hash.
 - Hash collisions exist, so one still has to check equality to confirm (another `O(p)`).
-- 💥 BOOM 💥! `O(p + t)`!
+- 💥 BOOM 💥! Now it's `O(p + t)` on average!
 
 ## Algorithm
 
@@ -35,7 +35,7 @@ def compute_hash(text, pattern):
 
 def update_hash(hash, old_char, new_char, pattern):
     h = pow(256, len(pattern)-1) # highest power of base
-    hash = (hash - ord(old_char) * h) % 101 # remove char
+    hash -= (ord(old_char) * h) % 101 # remove char
     hash = (hash * 256 + ord(new_char)) % 101 # 👀 same as compute_hash
     return hash
 
@@ -53,7 +53,28 @@ def rabin_karp_search(text, pattern):
     return -1
 ```
 
-👀 worst case still `O(t*p)` if all hashes collide and have to check equality every time.
+
+## 🤔 Understanding the hash functions
+
+### `compute_hash`
+
+It's tricky to see in reverse, but the hash is just a weighted sum (the % is just for convenience: positive & bounded):
+
+```python
+hash("HELLO") = ( H *256^4 + E *256^3 + L *256^2 + L *256^1 + O *256^0 ) % 101
+```
+
+### `update_hash`
+
+- Adding the new char works the same as in `compute_hash`
+- To remove `H` in the example above we'd need to `-= H*256^4`, but how do we figure out the `4` in `update_hash`?
+- It will always be `len(pattern-1)`! Because it goes from `0` to `n` right to left, and the size is `len(pattern)`.
+
+## 🧠 Pro tips
+
+- 👀 worst case still `O(t*p)` if all hashes collide and have to check equality every time.
+- 256 is the "base" and 101 is the "mod". Chosen because there are 256 characters and 101 is a large prime, which reduces chance of collision, but other numbers can be used.
+- `%` is distributive over sum, so you can `% 101` after every operation or at the end and it should return the same.
 
 ## Done 🎉🎉🎉
 
