@@ -2,8 +2,8 @@
 <div role="main" class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div>This is NOT a guide for studying for interviews. It's for re-learning (or de-rustying) the
-                harder things as quickly as possible, like Neo learning Kung Fu.</div>
+            <div>This is NOT a guide for studying for interviews. It's for *re-learning* the
+                harder things as quickly as possible (like Neo learning Kung Fu).</div>
 
             {{ range $title, $list := .Site.Data.usefulLinks }}
             <h2>Useful Links ({{ $title }})</h2>
@@ -13,11 +13,12 @@
                 {{ end }}
             </div>
             {{ end }}
-            {{ range slice "coding" "systemDesign" "leetcode" }}
+            {{ range slice "coding" "systemDesignQuestions" "systemDesignConcepts" "leetcode" }}
             <h2>{{ . | title }}</h2>
             <div class="posts-list">
                 {{ range where $.Site.Pages "Type" . }}
-                {{ if and (and (ne .Title "Coding") (ne .Title "SystemDesign")) (ne .Title "Leetcode") }}
+                {{ if and (and (ne .Title "Coding") (ne .Title "SystemDesignConcepts")) (and (ne .Title
+                "SystemDesignQuestions") (ne .Title "Leetcode")) }}
                 <div><a href="{{ .Permalink }}">{{ .Title }}</a></div>
                 {{end}}
                 {{end}}
