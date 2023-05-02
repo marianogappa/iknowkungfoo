@@ -1,7 +1,11 @@
 ---
-title: "Simplify Path"
+title: Simplify Path
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 class Solution:
@@ -26,3 +30,5 @@ print(Solution().simplifyPath("/../"), "== /")
 print(Solution().simplifyPath("/home//foo/"), "== /home/foo")
 
 ```
+
+

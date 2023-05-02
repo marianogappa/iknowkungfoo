@@ -1,19 +1,22 @@
 ---
-title: "Maximum Swap"
+title: Maximum Swap
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Code is pretty self-explanatory.
+Trickiest bit is that to find the number to swap to, you have
+to search from the right to produce the highest number.
+
+Think like this: to swap to highest number, take the small number
+from the left, and the high number from the right. This will
+find the largest number.
+
+
+## Algorithm
 
 ```python
 # Time: O(1)
 # Space: O(1)
-#
-# Code is pretty self-explanatory.
-# Trickiest bit is that to find the number to swap to, you have
-# to search from the right to produce the highest number.
-#
-# Think like this: to swap to highest number, take the small number
-# from the left, and the high number from the right. This will
-# find the largest number.
 class Solution:
     def maximumSwap(self, num: int) -> int:
         digits = number_to_digits(num)
@@ -72,3 +75,5 @@ def number_to_digits(num: int) -> list[int]:
     return digits
 
 ```
+
+

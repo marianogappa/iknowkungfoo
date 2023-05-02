@@ -62,14 +62,7 @@ func main() {
 					log.Fatal(err)
 				}
 				defer f.Close()
-				problemName := snakeToUcfirst(folderName)
-				// Write the contents of the main.py file wrapped in a code tag
-				f.WriteString("---\ntitle: \"")
-				f.WriteString(problemName)
-				f.WriteString("\"\ndate: 2022-11-20T09:03:20-08:00\n---\n\n")
-				f.WriteString("```python\n")
-				f.Write(data)
-				f.WriteString("\n```\n")
+				f.WriteString(createMarkdownContent(snakeToUcfirst(folderName), string(data)))
 			}
 			return filepath.SkipDir // Skip subdirectories
 		}
@@ -80,6 +73,89 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println("Done!")
+}
+
+func createMarkdownContent(problemName, pythonFileContent string) string {
+	aux := `---
+title: %s
+date: 2022-11-20T09:03:20-08:00
+---
+
+%s
+
+## Algorithm
+
+%spython
+%s
+%s
+
+%s
+`
+
+	preMarkdown, contents, postMarkdown := splitFile(pythonFileContent)
+
+	return fmt.Sprintf(aux, problemName, preMarkdown, "```", contents, "```", postMarkdown)
+}
+
+// splitFile splits a string that represents a file with Python code and comments
+// into three strings: pre-markdown, contents and post-markdown.
+// Pre-markdown contains the initial lines of the file that are prefixed by a hash and a space,
+// but with those initial characters removed. It stops at the first line that does not have that prefix.
+// Contents contains all lines after that, until the post-markdown part.
+// Post-markdown contains the final lines of the file that are prefixed by a hash and a space,
+// but with those initial characters removed.
+func splitFile(pythonFileContent string) (preMarkdown, contents, postMarkdown string) {
+	// Split the file into lines
+	lines := strings.Split(pythonFileContent, "\n")
+
+	// Find the index of the first line that is not pre-markdown
+	i := 0
+	for i < len(lines) && strings.HasPrefix(lines[i], "#") {
+		i++
+	}
+	// Also remove empty lines before start of code
+	for i < len(lines) && lines[i] == "" {
+		i++
+	}
+
+	// Join the pre-markdown lines
+	preMarkdown = strings.Join(stripPrefixes(lines[:i]), "\n")
+
+	// Find the index of the last line that is not post-markdown
+	j := len(lines) - 1
+	for j >= i && strings.HasPrefix(lines[j], "# ") {
+		j--
+	}
+
+	// Join the post-markdown lines
+	postMarkdown = strings.Join(stripPrefixes(lines[j+1:]), "\n")
+
+	// Join the contents lines
+	contents = strings.Join(lines[i:j+1], "\n")
+
+	// Remove the hash and space prefix from pre-markdown and post-markdown
+	preMarkdown = strings.Replace(preMarkdown, "# ", "", 1)
+	postMarkdown = strings.Replace(postMarkdown, "# ", "", 1)
+
+	return
+}
+
+func stripPrefixes(lines []string) []string {
+	stripped := []string{}
+	for _, line := range lines {
+		stripped = append(stripped, stripPrefix(line))
+	}
+	return stripped
+}
+
+func stripPrefix(line string) string {
+	if line == "#" {
+		return ""
+	}
+	if strings.HasPrefix(line, "# ") {
+		return line[2:]
+	}
+	return line
 }
 
 // go run update_leetcodes.go /Users/marianol/Code/leetcode/2022/ ../content/leetcode

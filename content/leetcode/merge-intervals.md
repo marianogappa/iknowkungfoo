@@ -1,14 +1,17 @@
 ---
-title: "Merge Intervals"
+title: Merge Intervals
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Straightforward. Intervals can be greedily merged left to right
+as long as they are sorted by start ascending.
+
+
+## Algorithm
 
 ```python
 # Time: O(n*logn)
 # Space: O(n)
-#
-# Straightforward. Intervals can be greedily merged left to right
-# as long as they are sorted by start ascending.
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         sorted_intervals = sorted(intervals)
@@ -39,3 +42,5 @@ def max_interval(i1, i2: List[int]) -> List[int]:
     return i1 if i1[0] > i2[0] else i2
 
 ```
+
+

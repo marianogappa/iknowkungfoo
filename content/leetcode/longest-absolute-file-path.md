@@ -1,18 +1,22 @@
 ---
-title: "Longest Absolute File Path"
+title: Longest Absolute File Path
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Exercise is straightforward but has a million edge cases: key is naming things properly.
+
+Analyze every line:
+- On files, path length should be checked and a max len kept.
+- On directories, a length of the current directory structure should be calculated and appended into a stack.
+- On both, how many dirs it went back, forward must be calculated, and the stack must be updated. It is incredibly
+  tricky to figure out how to do this properly.
+
+
+## Algorithm
 
 ```python
 # Time: O(n)
 # Space: O(n)
-#
-# Exercise is straightforward but has a million edge cases: key is naming things properly.
-# Analyze every line:
-# - On files, path length should be checked and a max len kept.
-# - On directories, a length of the current directory structure should be calculated and appended into a stack.
-# - On both, how many dirs it went back, forward must be calculated, and the stack must be updated. It is incredibly
-#   tricky to figure out how to do this properly.
 class Solution:
     def lengthLongestPath(self, input: str) -> int:
         max_len: int = 0
@@ -67,3 +71,5 @@ print(
 print(Solution().lengthLongestPath("a\n\tb1\n\t\tf1.txt\n\taaaaa\n\t\tf2.txt"), "== 14")
 
 ```
+
+

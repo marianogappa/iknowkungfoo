@@ -1,14 +1,16 @@
 ---
-title: "Longest Word In Dictionary"
+title: Longest Word In Dictionary
 date: 2022-11-20T09:03:20-08:00
 ---
 
+Intuition: put all words in a Trie (linear to words), then traverse Trie once
+in reverse lexicographical order greedily keeping a max length word, only
+traversing while current node is always a word stop. Should be linear to words too.
+
+## Algorithm
+
 ```python
 class Solution:
-    # Intuition: put all words in a Trie (linear to words), then traverse Trie once
-    # in reverse lexicographical order greedily keeping a max length word, only
-    # traversing while current node is always a word stop. Should be linear to words too.
-    #
     # Time: O(w) where w is not len(words) but the whole content
     # Space: O(w)
     def longestWord(self, words: List[str]) -> str:
@@ -53,3 +55,5 @@ def traverse_stop_words_reverse_find_max_len(t: Trie, cur_word, max_word: list[s
     return max_word
 
 ```
+
+

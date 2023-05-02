@@ -1,16 +1,19 @@
 ---
-title: "Vertical Order Traversal Of A Binary Tree"
+title: Vertical Order Traversal Of A Binary Tree
 date: 2022-11-20T09:03:20-08:00
 ---
 
+
+
+## Algorithm
+
 ```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-#
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 # Time: O(nlogn) Most steps are linear, except the sorting step which is klogk where k is n/2 in the worst case
 # Space: O(n)
 class Solution:
@@ -59,3 +62,5 @@ def populate_result(cur:int, result:List[List[int]], root)-> None:
         row += 1
 
 ```
+
+

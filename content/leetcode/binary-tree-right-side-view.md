@@ -1,20 +1,22 @@
 ---
-title: "Binary Tree Right Side View"
+title: Binary Tree Right Side View
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Veeery trivial. Just dfs in-order checking right side first.
+
+
+## Algorithm
 
 ```python
 # Time: O(n)
 # Space: O(n)
-#
-# Veeery trivial. Just dfs in-order checking right side first.
-#
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         return dfs(root, [], 0)
@@ -33,3 +35,5 @@ def dfs(root: Optional[TreeNode], right_side: list[int], level: int) -> list[int
     return right_side
 
 ```
+
+

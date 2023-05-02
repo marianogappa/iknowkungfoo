@@ -1,18 +1,21 @@
 ---
-title: "Capacity To Ship Packages Within D Days"
+title: Capacity To Ship Packages Within D Days
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Brute force solution: if capacity == sum(weights) => days == 1. So do a for-loop that decrements
+capacity, until days is higher than the specified value. The candidate capacity right before the
+first invalid one is the right one.
+
+How can we improve on the brute force solution? Instead of looping over all candidates, binary
+search over them! That's it.
+
+
+## Algorithm
 
 ```python
 # Time: O(nlogn) where n is len(weights)
 # Space: O(log n) for the binary search stack. Iterative binary search would improve to O(1).
-#
-# Brute force solution: if capacity == sum(weights) => days == 1. So do a for-loop that decrements
-# capacity, until days is higher than the specified value. The candidate capacity right before the
-# first invalid one is the right one.
-#
-# How can we improve on the brute force solution? Instead of looping over all candidates, binary
-# search over them! That's it.
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         return binary_search(max(weights), sum(weights), weights, days)
@@ -52,3 +55,5 @@ def days_it_takes(candidate_capacity, weights) -> int:
     return days_it_took
 
 ```
+
+

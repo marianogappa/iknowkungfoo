@@ -1,7 +1,11 @@
 ---
-title: "Copy List With Random Pointer"
+title: Copy List With Random Pointer
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 class Node:
@@ -67,3 +71,5 @@ head = Node(1, Node(2, Node(3, Node(4))))
 print(Solution().copyRandomList(head))
 
 ```
+
+

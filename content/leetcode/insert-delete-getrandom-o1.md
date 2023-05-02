@@ -1,18 +1,21 @@
 ---
-title: "Insert Delete Getrandom O1"
+title: Insert Delete Getrandom O1
 date: 2022-11-20T09:03:20-08:00
 ---
 
+The intuitions are pretty clear: 
+ - For insert+remove in O(1), a set is all that's needed.
+ - With a set, getRandom cannot be done in O(1).
+ - To do getRandom in O(1) an array is needed, so let's keep both.
+ - The only issue is that remove in array is O(n). How to circumvent this issue?
+=> Remove is O(n) only if keeping order is required. Since it's not, just patch the whole with
+   last item in array!
+
+
+
+## Algorithm
+
 ```python
-# The intuitions are pretty clear: 
-#  - For insert+remove in O(1), a set is all that's needed.
-#  - With a set, getRandom cannot be done in O(1).
-#  - To do getRandom in O(1) an array is needed, so let's keep both.
-#  - The only issue is that remove in array is O(n). How to circumvent this issue?
-# => Remove is O(n) only if keeping order is required. Since it's not, just patch the whole with
-#    last item in array!
-
-
 from random import choice
 
 
@@ -69,3 +72,5 @@ print(obj.getRandom())
 
 
 ```
+
+

@@ -1,19 +1,22 @@
 ---
-title: "Powx N"
+title: Powx N
 date: 2022-11-20T09:03:20-08:00
 ---
 
+This makes perfect sense once you think in binary!
+
+For 2 ^ 10:
+1) make sure n is positive. If not, just do 1/x and n = -1.
+2) Convert the exponent to binary: for 10 it's "1010"
+3) Note that 2^10 = 2^8 * 2^4. The exponents coincide with the "1s" in the binary representation.
+
+
+## Algorithm
+
 ```python
+# Time: O(logn)
+# Space: O(1)
 class Solution:
-    # Time: O(logn)
-    # Space: O(1)
-    #
-    # This makes perfect sense once you think in binary!
-    #
-    # For 2 ^ 10:
-    # 1) make sure n is positive. If not, just do 1/x and n = -1.
-    # 2) Convert the exponent to binary: for 10 it's "1010"
-    # 3) Note that 2^10 = 2^8 * 2^4. The exponents coincide with the "1s" in the binary representation.
     def myPow(self, x, n):
         # Normalize n to positive
         if n < 0:
@@ -35,3 +38,5 @@ class Solution:
         return result
 
 ```
+
+

@@ -1,21 +1,24 @@
 ---
-title: "Interval List Intersections"
+title: Interval List Intersections
 date: 2022-11-20T09:03:20-08:00
 ---
+
+It's trivial but watch the edge cases!
+
+Carefully write functions for checking for overlap and calculating intersection.
+
+For looping over, note te following:
+- The same pair of intervals cannot participate on two intersections; at least one "cursor" always moves to right.
+- EDGE CASE! If the pair of intervals end at the same number, then advance both cursors.
+- Otherwise, advance the cursor with the smallest interval end. The later ending interval may participate in next.
+- Intersections don't need to be merged because they cannot overlap. This is because intervals are disjoint.
+
+
+## Algorithm
 
 ```python
 from typing import List
 
-# It's trivial but watch the edge cases!
-#
-# Carefully write functions for checking for overlap and calculating intersection.
-#
-# For looping over, note te following:
-# - The same pair of intervals cannot participate on two intersections; at least one "cursor" always moves to right.
-# - EDGE CASE! If the pair of intervals end at the same number, then advance both cursors.
-# - Otherwise, advance the cursor with the smallest interval end. The later ending interval may participate in next.
-# - Intersections don't need to be merged because they cannot overlap. This is because intervals are disjoint.
-#
 # Time: O(n)
 # Space: O(1) unless solution space counts in which case O(n)
 class Solution:
@@ -63,3 +66,5 @@ print(
 print(Solution().intervalIntersection([[1, 3], [5, 9]], []))
 
 ```
+
+

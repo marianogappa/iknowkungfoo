@@ -1,7 +1,11 @@
 ---
-title: "Convert Binary Search Tree To Sorted Doubly Linked List"
+title: Convert Binary Search Tree To Sorted Doubly Linked List
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 class Solution:
@@ -37,3 +41,5 @@ def array_to_sdll(nums: list['Optional[Node]']) -> 'Optional[Node]':
     return nums[0]
 
 ```
+
+

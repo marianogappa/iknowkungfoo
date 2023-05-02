@@ -1,7 +1,13 @@
 ---
-title: "Network Delay Time"
+title: Network Delay Time
 date: 2022-11-20T09:03:20-08:00
 ---
+
+This exercise is just running Dijkstra and finding the max of the minimum paths. Only trick is that if any of the
+nodes stays as "inf" after running Dijkstra, the node is unreachable, so we must return -1.
+
+
+## Algorithm
 
 ```python
 from collections import defaultdict
@@ -10,9 +16,6 @@ from typing import List
 
 # Time: O(v*log v + e)
 # Space: O(v + e)
-#
-# This exercise is just running Dijkstra and finding the max of the minimum paths. Only trick is that if any of the
-# nodes stays as "inf" after running Dijkstra, the node is unreachable, so we must return -1.
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         # We're gonna need a vertex's edges in constant time for Dikstra, so compute it first
@@ -72,3 +75,5 @@ k = 44
 print(Solution().networkDelayTime(times, n, k))
 
 ```
+
+

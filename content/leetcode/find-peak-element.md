@@ -1,19 +1,22 @@
 ---
-title: "Find Peak Element"
+title: Find Peak Element
 date: 2022-11-20T09:03:20-08:00
 ---
+
+This constraint is providing an elusive hint: nums[i] != nums[i + 1] for all valid i
+Until you figure out why they mention it, you won't find the solution.
+
+Intuition: given any pair of numbers, one will be larger than the other. At that point
+you know there will be a local peak in that direction (i.e. either when the ascending
+trend reverses, or when you escape the array). With this knowledge, you can do
+binary search.
+
+
+## Algorithm
 
 ```python
 # Time: O(log(n))
 # Space: O(log(n)) can be O(1) on iterative binary search
-#
-# This constraint is providing an elusive hint: nums[i] != nums[i + 1] for all valid i
-# Until you figure out why they mention it, you won't find the solution.
-#
-# Intuition: given any pair of numbers, one will be larger than the other. At that point
-# you know there will be a local peak in that direction (i.e. either when the ascending
-# trend reverses, or when you escape the array). With this knowledge, you can do
-# binary search.
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         return binary_search(nums, 0, len(nums)-1)
@@ -35,3 +38,5 @@ def binary_search(nums: list[int], left, right: int) -> Optional[int]:
         return binary_search(nums, mid+1, right)
     
 ```
+
+

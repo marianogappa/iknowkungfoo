@@ -1,7 +1,11 @@
 ---
-title: "Minimum Cost To Set Cooking Time"
+title: Minimum Cost To Set Cooking Time
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 class Solution:
@@ -60,3 +64,5 @@ print(Solution().minCostSetTime(
 ))
 
 ```
+
+

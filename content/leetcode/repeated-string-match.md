@@ -1,18 +1,20 @@
 ---
-title: "Repeated String Match"
+title: Repeated String Match
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Note: if the "in" Python keyword is allowed here, using KMP is redundant.
+
+- Obviously, as long as "a" is smaller than "b", "b" cannot be a substring.
+- NOT obvious: once "a" >= "b", either "b" is already a substring, or you need one more repeat, but no more.
+
+## Algorithm
 
 ```python
 import math
 
 # Time: O(a+b)
 # Space: O(a+b)
-#
-# Note: if the "in" Python keyword is allowed here, using KMP is redundant.
-#
-# - Obviously, as long as "a" is smaller than "b", "b" cannot be a substring.
-# - NOT obvious: once "a" >= "b", either "b" is already a substring, or you need one more repeat, but no more.
 class Solution:
     def repeatedStringMatch(self, a: str, b: str) -> int:
         minimum_repeat_times = int(math.ceil(float(len(b))/float(len(a))))
@@ -65,3 +67,5 @@ print(Solution().repeatedStringMatch("aa", "z"), "== -1")
 print(Solution().repeatedStringMatch("baaaaa", "ab"), "== 2")
 
 ```
+
+

@@ -1,7 +1,11 @@
 ---
-title: "Swim In Rising Water"
+title: Swim In Rising Water
 date: 2022-11-20T09:03:20-08:00
 ---
+
+It's dijkstra but the distances & neighbors can be computed dynamically.
+
+## Algorithm
 
 ```python
 from typing import List
@@ -9,8 +13,6 @@ import heapq
 
 # Time: O(n*n*logn*n)
 # Space: O(n*n)
-#
-# It's dijkstra but the distances & neighbors can be computed dynamically.
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
         # Dijkstra setup
@@ -72,3 +74,5 @@ print(Solution().swimInWater(
 ))
 
 ```
+
+

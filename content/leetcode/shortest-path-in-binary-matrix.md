@@ -1,7 +1,16 @@
 ---
-title: "Shortest Path In Binary Matrix"
+title: Shortest Path In Binary Matrix
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Because the best path could potentially go up and left, there's no linear solution using memo.
+The zeroes in the grid are vertices, and their connected vertices form edges. Moving from one
+vertex to another has a cost of 1. This is straight up Dikstra!
+
+Just remember to add 1, because the number of moves == number of vertices - 1.
+
+
+## Algorithm
 
 ```python
 from typing import List
@@ -9,12 +18,6 @@ import heapq
 
 # Time: O(n^2*log(n^2)) remember that n is the side length, not the number of cells.
 # Space: O(n^2)
-#
-# Because the best path could potentially go up and left, there's no linear solution using memo.
-# The zeroes in the grid are vertices, and their connected vertices form edges. Moving from one
-# vertex to another has a cost of 1. This is straight up Dikstra!
-#
-# Just remember to add 1, because the number of moves == number of vertices - 1.
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         # Edge case: if either the start or the end are not zeroes, there's no clear path
@@ -72,3 +75,5 @@ print(Solution().shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]), " == 4")
 print(Solution().shortestPathBinaryMatrix([[1,0,0],[1,1,0],[1,1,0]]), " == -1")
 
 ```
+
+

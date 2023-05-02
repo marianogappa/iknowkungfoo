@@ -1,16 +1,17 @@
 ---
-title: "Valid Tic Tac Toe State"
+title: Valid Tic Tac Toe State
 date: 2022-11-20T09:03:20-08:00
 ---
 
+It's straightforward, but just make sure to spend sufficient time
+looking at the possible rules and look for counterexamples.
+
+## Algorithm
+
 ```python
 from collections import Counter
-
 # Time: O(1)
 # Space: O(1)
-#
-# It's straightforward, but just make sure to spend sufficient time
-# looking at the possible rules and look for counterexamples.
 class Solution:
     def validTicTacToe(self, board: List[str]) -> bool:
         freqs = Counter(f"{board[0]}{board[1]}{board[2]}")
@@ -64,3 +65,5 @@ class Solution:
         return True
 
 ```
+
+

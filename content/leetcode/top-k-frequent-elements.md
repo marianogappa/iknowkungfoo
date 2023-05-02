@@ -1,20 +1,22 @@
 ---
-title: "Top K Frequent Elements"
+title: Top K Frequent Elements
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Straightforward exercise with no tricks. "Top k" in the title is screaming Heaps, but if
+not clear, it says in the end "solve sorting faster than n*logn!" which also means Heaps.
+
+The heap needs a value to max-heap over, and that is the frequency of each number, so
+we need a hashmap to calculate the frequency. Note that if it was letters in the alphabet
+instead of numbers, then an array[26] would be more efficient. In any other case, use a
+hashmap!
+
+## Algorithm
 
 ```python
 class Solution:
     # Time: O(k*logn) due to k heap pops
     # Space: O(n) to store all nums, first in the hashmap, then in the tuple array, then in top_k
-    #
-    # Straightforward exercise with no tricks. "Top k" in the title is screaming Heaps, but if
-    # not clear, it says in the end "solve sorting faster than n*logn!" which also means Heaps.
-    #
-    # The heap needs a value to max-heap over, and that is the frequency of each number, so
-    # we need a hashmap to calculate the frequency. Note that if it was letters in the alphabet
-    # instead of numbers, then an array[26] would be more efficient. In any other case, use a
-    # hashmap!
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         # Time: O(n)
         # Make a frequency hashmap of nums
@@ -43,3 +45,5 @@ class Solution:
         return top_k
 
 ```
+
+

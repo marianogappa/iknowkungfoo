@@ -1,11 +1,14 @@
 ---
-title: "Rotate Image"
+title: Rotate Image
 date: 2022-11-20T09:03:20-08:00
 ---
 
+Time: O(n)
+Space: O(1)
+
+## Algorithm
+
 ```python
-# Time: O(n)
-# Space: O(1)
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
@@ -38,3 +41,5 @@ class Solution:
             end -= 1
 
 ```
+
+

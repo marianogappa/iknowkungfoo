@@ -1,18 +1,21 @@
 ---
-title: "Find Two Non Overlapping Sub Arrays Each With Target Sum"
+title: Find Two Non Overlapping Sub Arrays Each With Target Sum
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Solvable with a sliding-window. Note that this is simple because arr has no negatives nor zeroes.
+
+The tricky part is finding non-overlapping subarrays. By keeping a "best subarray up to ith", we
+can consult it upon finding each subarray, checking best subarray up to "before start of current".
+
+
+## Algorithm
 
 ```python
 from typing import List
 
 # Time: O(n)
 # Space: O(n)
-#
-# Solvable with a sliding-window. Note that this is simple because arr has no negatives nor zeroes.
-#
-# The tricky part is finding non-overlapping subarrays. By keeping a "best subarray up to ith", we
-# can consult it upon finding each subarray, checking best subarray up to "before start of current".
 class Solution:
     def minSumOfLengths(self, arr: List[int], target: int) -> int:
         start = running_sum = 0
@@ -57,3 +60,5 @@ print(Solution().minSumOfLengths([4,3,2,6,2,3,4], 6), "== -1")
 
 
 ```
+
+

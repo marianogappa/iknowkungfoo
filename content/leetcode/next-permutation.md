@@ -1,24 +1,28 @@
 ---
-title: "Next Permutation"
+title: Next Permutation
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Intuition:
+
+- If the digits are descending, there's no greater possible: [3, 2, 1]
+- If the digits are ascending, flipping the last two makes immediate greater: [1, 2, 3] -> [1, 3, 2]
+
+Consider this:
+[4, 3, 2, 1, 4, 3, 2, 1] which should go to: [4, 3, 2, 2, 1, 1, 3, 4]
+
+- Looks like first we look right to left for the first decreasing digit.
+- Once found, it must be swapped with a larger one on the right, but should be the "smallest larger".
+- The smallest larger MUST be the first larger going again right to left.
+- Once done, the numbers to the right of the swapped pivot have to be sorted ascendingly.
+- Because numbers are already sorted descendingly (even with the swap), rather than sort, just reverse!
+
+## Algorithm
 
 ```python
 class Solution:
     """
-    Intuition:
-    
-    - If the digits are descending, there's no greater possible: [3, 2, 1]
-    - If the digits are ascending, flipping the last two makes immediate greater: [1, 2, 3] -> [1, 3, 2]
-    
-    Consider this:
-    [4, 3, 2, 1, 4, 3, 2, 1] which should go to: [4, 3, 2, 2, 1, 1, 3, 4]
-    
-    - Looks like first we look right to left for the first decreasing digit.
-    - Once found, it must be swapped with a larger one on the right, but should be the "smallest larger".
-    - The smallest larger MUST be the first larger going again right to left.
-    - Once done, the numbers to the right of the swapped pivot have to be sorted ascendingly.
-    - Because numbers are already sorted descendingly (even with the swap), rather than sort, just reverse!
+
     
     Time: O(n)
     Space: O(1)
@@ -60,3 +64,5 @@ def find_idx_first_larger_right_to_left(nums: list[int], num: int) -> int:
     return -1
 
 ```
+
+

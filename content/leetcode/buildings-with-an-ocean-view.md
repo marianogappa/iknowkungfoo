@@ -1,7 +1,11 @@
 ---
-title: "Buildings With An Ocean View"
+title: Buildings With An Ocean View
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 # Time: O(n)
@@ -18,3 +22,5 @@ class Solution:
         return result[::-1]
 
 ```
+
+

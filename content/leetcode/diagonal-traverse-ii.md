@@ -1,22 +1,25 @@
 ---
-title: "Diagonal Traverse Ii"
+title: Diagonal Traverse Ii
 date: 2022-11-20T09:03:20-08:00
 ---
+
+You pretty much have to know the trick to pull this one off, but then it's easy.
+The problem with the intuitive strategy is that the data structure is sparse, and you cannot
+afford to check all empty slots or it will TLE.
+
+The trick is that each diagonal line of cells has the same unique row+col sum, so as long as those
+cells are traversed in order to each other, it is not necessary to traverse the lists in diagonal
+order. You can achieve this by traversing the lists bottom-up, but each list can be traversed
+normally: left to right. Use a hashmap to keep per-sum lists. Each list will have the
+diagonally-traversed set of cells of each sum.
+
+
+## Algorithm
 
 ```python
 from collections import defaultdict
 from typing import List
 
-# You pretty much have to know the trick to pull this one off, but then it's easy.
-# The problem with the intuitive strategy is that the data structure is sparse, and you cannot
-# afford to check all empty slots or it will TLE.
-#
-# The trick is that each diagonal line of cells has the same unique row+col sum, so as long as those
-# cells are traversed in order to each other, it is not necessary to traverse the lists in diagonal
-# order. You can achieve this by traversing the lists bottom-up, but each list can be traversed
-# normally: left to right. Use a hashmap to keep per-sum lists. Each list will have the
-# diagonally-traversed set of cells of each sum.
-#
 # Time: O(n)
 # Space: O(n)
 class Solution:
@@ -38,3 +41,5 @@ print(Solution().findDiagonalOrder([[1,2,3],[4,5,6],[7,8,9]]) == [1,4,2,7,5,3,8,
 print(Solution().findDiagonalOrder([[1,2,3,4,5],[6,7],[8],[9,10,11],[12,13,14,15,16]]) == [1,6,2,8,7,3,9,4,12,10,5,13,11,14,15,16])
 
 ```
+
+

@@ -1,29 +1,32 @@
 ---
-title: "Product Of The Last K Numbers"
+title: Product Of The Last K Numbers
 date: 2022-11-20T09:03:20-08:00
 ---
 
+By inspecting an example it looks obvious that it's a division:
+
+Consider [1, 2, 3, 4]:
+
+Calculate running product:
+1, 1*2, 1*2*3, 1*2*3*4
+
+If at that point you're asked for k = 2, then answer is 3*4,
+which can be calculated as accum[3]/accum[3-k]:
+
+1*2*3*4/(1*2) = 3*4
+
+It's almost as easy as that. The only tricky part is that
+zeros break the product, so they cannot be included in the
+running product.
+
+There's a simple solution for that though: just start the
+running product again after a zero, and deal with negative
+index overflows as an edge case.
+
+
+## Algorithm
+
 ```python
-# By inspecting an example it looks obvious that it's a division:
-#
-# Consider [1, 2, 3, 4]:
-#
-# Calculate running product:
-# 1, 1*2, 1*2*3, 1*2*3*4
-#
-# If at that point you're asked for k = 2, then answer is 3*4,
-# which can be calculated as accum[3]/accum[3-k]:
-#
-# 1*2*3*4/(1*2) = 3*4
-#
-# It's almost as easy as that. The only tricky part is that
-# zeros break the product, so they cannot be included in the
-# running product.
-#
-# There's a simple solution for that though: just start the
-# running product again after a zero, and deal with negative
-# index overflows as an edge case.
-#
 # Space: O(n)
 class ProductOfNumbers:
 
@@ -51,3 +54,5 @@ class ProductOfNumbers:
             return self.accum[last_i]//self.accum[divide_i]
 
 ```
+
+

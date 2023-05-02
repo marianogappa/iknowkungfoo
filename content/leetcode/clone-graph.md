@@ -1,7 +1,15 @@
 ---
-title: "Clone Graph"
+title: Clone Graph
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Can be solved with BFS, iterative DFS or in this case recursive DFS.
+As long as any node is not visited twice (i.e. keep a visited set), just
+traverse the graph and for each node create a new one if not created yet, 
+and connect their neighbors.
+
+
+## Algorithm
 
 ```python
 class Node:
@@ -11,11 +19,6 @@ class Node:
 
 # Time: O(v+e)
 # Space: O(v), or O(v+e) if solution space counts
-#
-# Can be solved with BFS, iterative DFS or in this case recursive DFS.
-# As long as any node is not visited twice (i.e. keep a visited set), just
-# traverse the graph and for each node create a new one if not created yet, 
-# and connect their neighbors.
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
@@ -42,3 +45,5 @@ def do_clone(old_node: Node, new_nodes: dict[int, Node], visited: set[int]):
             do_clone(old_neighbor, new_nodes, visited)
 
 ```
+
+

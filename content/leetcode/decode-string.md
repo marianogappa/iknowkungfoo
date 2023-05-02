@@ -1,7 +1,20 @@
 ---
-title: "Decode String"
+title: Decode String
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Straightforward if using proper abstractions. For a parseable grammar, not too complex to implement a token iterator.
+Only 3 tokens exist: an int, a string or a closing bracket (opening bracket always comes after number so ignore it!)
+
+Switch:
+
+If string: append it to the solution as is.
+If number: get the number, run this decoding function recursively to get the string, and append n*decoded to solution.
+If closing bracket: we must be in a recursive call! End the call here.
+If no tokens left: we must be in a non-recursive call! End the call here.
+
+
+## Algorithm
 
 ```python
 from dataclasses import dataclass
@@ -9,16 +22,6 @@ from typing import Optional
 
 # Time: O(n) we parse the string once. There are constants in this string that will make us for-loop over it.
 # Space: O(n) we store the solution in a buffer (in this case actually in an array); we also store partial strings.
-#
-# Straightforward if using proper abstractions. For a parseable grammar, not too complex to implement a token iterator.
-# Only 3 tokens exist: an int, a string or a closing bracket (opening bracket always comes after number so ignore it!)
-#
-# Switch:
-#
-# If string: append it to the solution as is.
-# If number: get the number, run this decoding function recursively to get the string, and append n*decoded to solution.
-# If closing bracket: we must be in a recursive call! End the call here.
-# If no tokens left: we must be in a non-recursive call! End the call here.
 class Solution:
     def decodeString(self, s: str) -> str:
         return do_decode(TokenIterator(s))
@@ -76,3 +79,5 @@ print(Solution().decodeString('3[a2[c]]') == 'accaccacc')
 print(Solution().decodeString('2[abc]3[cd]ef') == 'abcabccdcdcdef')
 
 ```
+
+

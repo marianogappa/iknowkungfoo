@@ -1,7 +1,11 @@
 ---
-title: "Dot Product Of Two Sparse Vectors"
+title: Dot Product Of Two Sparse Vectors
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 # Time: O(n) 
@@ -29,3 +33,5 @@ class SparseVector:
         return result
 
 ```
+
+

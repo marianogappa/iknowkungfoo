@@ -1,7 +1,11 @@
 ---
-title: "Insert Into A Sorted Circular Linked List"
+title: Insert Into A Sorted Circular Linked List
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 class Solution:
@@ -32,3 +36,5 @@ class Solution:
         return head
 
 ```
+
+

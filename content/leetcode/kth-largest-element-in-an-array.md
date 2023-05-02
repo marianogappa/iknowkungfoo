@@ -1,20 +1,23 @@
 ---
-title: "Kth Largest Element In An Array"
+title: Kth Largest Element In An Array
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Getting the kth largest/smallest item in O(n) is what quickselect does.
+
+Note that to get largest instead of the more usual smallest, you only
+need to change the "<" to ">" in the partition function. The comparisons
+in the quickselect function don't involve numbers, but indices, so they
+don't need to change.
+
+
+## Algorithm
 
 ```python
 from random import randint
 
 # Time: O(n) average, O(n^2) worst
 # Space: O(1) in-place
-#
-# Getting the kth largest/smallest item in O(n) is what quickselect does.
-#
-# Note that to get largest instead of the more usual smallest, you only
-# need to change the "<" to ">" in the partition function. The comparisons
-# in the quickselect function don't involve numbers, but indices, so they
-# don't need to change.
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         return quickselect(nums, 0, len(nums)-1, k)
@@ -51,3 +54,5 @@ def quickselect(nums: List[int], left, right, k: int) -> int:
     return quickselect(nums, pivot + 1, right, k)
 
 ```
+
+

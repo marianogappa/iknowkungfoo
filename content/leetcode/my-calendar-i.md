@@ -1,32 +1,33 @@
 ---
-title: "My Calendar I"
+title: My Calendar I
 date: 2022-11-20T09:03:20-08:00
 ---
+
+The issue of minimising overlap checks requires keeping the
+bookings in some sort order.
+
+There are no alternatives to a BST, AVL Tree, R/B Tree for
+efficiently keeping the list sorted while adding elements,
+and implementing this would be too tricky so we resort to
+SortedList, which even comes with binary search built-in.
+
+Note that SortedList receives tuples and sorts by the first
+element of the tuple ascendingly, so bookings will be sorted
+by start ascending.
+
+We know there are no overlaps in bookings, which means that,
+when bisect returns, we only need to check previous and
+current index to know whether there's overlap. Careful that
+left and current may both not exist, and that's it.
+
+
+## Algorithm
 
 ```python
 from sortedcontainers import SortedList
 
 # Time: O(nlogn) for n calls of book, each one being O(logn)
 # Space: O(n) to build and maintain the SortedList
-#
-# The issue of minimising overlap checks requires keeping the
-# bookings in some sort order.
-#
-# There are no alternatives to a BST, AVL Tree, R/B Tree for
-# efficiently keeping the list sorted while adding elements,
-# and implementing this would be too tricky so we resort to
-# SortedList, which even comes with binary search built-in.
-#
-# Note that SortedList receives tuples and sorts by the first
-# element of the tuple ascendingly, so bookings will be sorted
-# by start ascending.
-#
-# We know there are no overlaps in bookings, which means that,
-# when bisect returns, we only need to check previous and
-# current index to know whether there's overlap. Careful that
-# left and current may both not exist, and that's it.
-
-
 class MyCalendar:
 
     def __init__(self):
@@ -59,3 +60,5 @@ def latter_booking(booking1: tuple[int], booking2: tuple[int]) -> tuple[int]:
     return booking2
 
 ```
+
+

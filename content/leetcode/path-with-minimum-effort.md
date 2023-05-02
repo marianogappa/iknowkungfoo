@@ -1,7 +1,15 @@
 ---
-title: "Path With Minimum Effort"
+title: Path With Minimum Effort
 date: 2022-11-20T09:03:20-08:00
 ---
+
+The exercise is asking to calculate the "minimum effort" in a graph, so pretty much Dijkstra.
+The only "differences", if any:
+1) Normally we have an adjacency list, and here we have a matrix, so up to 4 edges per vertex.
+2) Normally edges distance and we sum distances: here we calculate max effort instead.
+
+
+## Algorithm
 
 ```python
 from typing import List
@@ -9,11 +17,6 @@ from queue import PriorityQueue
 
 # Time: O(e*logv) but e < 4*v so => O(v*logv)
 # Space: O(e + v) but e < 4*v so => O(v)
-#
-# The exercise is asking to calculate the "minimum effort" in a graph, so pretty much Dijkstra.
-# The only "differences", if any:
-# 1) Normally we have an adjacency list, and here we have a matrix, so up to 4 edges per vertex.
-# 2) Normally edges distance and we sum distances: here we calculate max effort instead.
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
         return dijkstra(heights, (0, 0), (len(heights[0])-1, len(heights)-1))
@@ -60,3 +63,5 @@ print(Solution().minimumEffortPath(
 ), "== 0")
 
 ```
+
+

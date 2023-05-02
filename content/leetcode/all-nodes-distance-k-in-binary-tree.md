@@ -1,21 +1,24 @@
 ---
-title: "All Nodes Distance K In Binary Tree"
+title: All Nodes Distance K In Binary Tree
 date: 2022-11-20T09:03:20-08:00
 ---
 
-```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+This may not be the most succinct strategy but it's the most intuitive to me.
 
-# This may not be the most succinct strategy but it's the most intuitive to me.
-# Optimise time by making path a deque rather than a list.
-#
+Optimise time by making path a deque rather than a list.
+
+
+## Algorithm
+
+```python
 # Time: O(n) two dfs'. This assumes using a deque for building path though.
 # Space: O(n) technically O(h) but h could be n.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         # First, find path to target. This will inform the distance between
@@ -100,3 +103,5 @@ def find_path_to_target(root: TreeNode, target: int, partial: list[int]) -> list
     return None
 
 ```
+
+

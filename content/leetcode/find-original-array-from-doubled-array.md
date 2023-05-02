@@ -1,30 +1,31 @@
 ---
-title: "Find Original Array From Doubled Array"
+title: Find Original Array From Doubled Array
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Initial intuition of considering that a number is in the original array if it has a double doesn't work; here's
+the counter example:
+
+1 -> 2 -> 4 -> 8
+
+2 has a double, but since it's already double of 1, it cannot be original and double at the same time.
+
+This means it matters the order in which we check. It's fair to say that, if the smallest number in the array has
+no double, then definitely the result is []. So, this points to the fact that array must be sorted first.
+
+At that point, it's pretty trivial: go left to right and check for doubles.
+
+Only catch is that we have to "remove/mark" numbers, because if we used them as doubles, we must ignore them later.
+Solution is to create a frequency map, and decrement frequency when used. This takes care of duplicates too.
+
+
+## Algorithm
 
 ```python
 from collections import defaultdict
 
 # Time: O(n*logn) for sorting
 # Space: O(n) for freq map and sorted list
-#
-# Initial intuition of considering that a number is in the original array if it has a double doesn't work; here's
-# the counter example:
-#
-# 1 -> 2 -> 4 -> 8
-#
-# 2 has a double, but since it's already double of 1, it cannot be original and double at the same time.
-#
-# This means it matters the order in which we check. It's fair to say that, if the smallest number in the array has
-# no double, then definitely the result is []. So, this points to the fact that array must be sorted first.
-#
-# At that point, it's pretty trivial: go left to right and check for doubles.
-#
-# Only catch is that we have to "remove/mark" numbers, because if we used them as doubles, we must ignore them later.
-# Solution is to create a frequency map, and decrement frequency when used. This takes care of duplicates too.
-
-
 class Solution:
     def findOriginalArray(self, changed: List[int]) -> List[int]:
         # Optimisation: odd number list must have a number without double
@@ -68,3 +69,5 @@ class Solution:
         return result
 
 ```
+
+

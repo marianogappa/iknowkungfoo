@@ -1,7 +1,11 @@
 ---
-title: "Find K Closest Elements"
+title: Find K Closest Elements
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 from typing import List
@@ -54,3 +58,5 @@ print(Solution().findClosestElements([1,2,3,4,5], 4, -1), " == [1, 2, 3, 4]")
 print(Solution().findClosestElements([1,1,1,10,10,10], 1, 9), " == [10]")
 
 ```
+
+

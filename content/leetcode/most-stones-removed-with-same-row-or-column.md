@@ -1,20 +1,23 @@
 ---
-title: "Most Stones Removed With Same Row Or Column"
+title: Most Stones Removed With Same Row Or Column
 date: 2022-11-20T09:03:20-08:00
 ---
+
+If any two stones share a col or row, they're part of the same "group".
+In a group, you can always iteratively remove stones in some order until there's only one left.
+
+Therefore:
+1) Use union-find to answer how many groups there are
+2) Number of stones that can be removed: total stones - total groups
+
+Trick: the "1s" in (1, 1) are different individuals, so add a large number to all "y"s to make them different.
+
+
+## Algorithm
 
 ```python
 # Time: O(nlog(n)) due to 2n operations on n nodes
 # Space: O(n)
-#
-# If any two stones share a col or row, they're part of the same "group".
-# In a group, you can always iteratively remove stones in some order until there's only one left.
-#
-# Therefore:
-# 1) Use union-find to answer how many groups there are
-# 2) Number of stones that can be removed: total stones - total groups
-#
-# Trick: the "1s" in (1, 1) are different individuals, so add a large number to all "y"s to make them different.
 class Solution:
     def removeStones(self, stones: List[List[int]]) -> int:
         uf = UnionFind()
@@ -45,3 +48,5 @@ class UnionFind:
         return self.find(self.parent[a]) if self.parent[a] != a else a
 
 ```
+
+

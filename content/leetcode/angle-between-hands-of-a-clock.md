@@ -1,7 +1,11 @@
 ---
-title: "Angle Between Hands Of A Clock"
+title: Angle Between Hands Of A Clock
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 # Time: O(1)
@@ -15,3 +19,5 @@ class Solution:
         return min(abs(hour_hand_angle - minute_hand_angle), 360 - abs(minute_hand_angle - hour_hand_angle))
 
 ```
+
+

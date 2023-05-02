@@ -1,16 +1,19 @@
 ---
-title: "Diagonal Traverse"
+title: Diagonal Traverse
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Since it's tricky to iterate in the required pattern, it's easier to always iterate
+with the same delta (up-right), and reverse every second sub-path (linear time).
+
+At that point, it's trivial: traverse first column and last row always towards up-right.
+
+
+## Algorithm
 
 ```python
 # Time: O(n)
 # Space: O(n)
-#
-# Since it's tricky to iterate in the required pattern, it's easier to always iterate
-# with the same delta (up-right), and reverse every second sub-path (linear time).
-#
-# At that point, it's trivial: traverse first column and last row always towards up-right.
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
         path: list[int] = []
@@ -50,3 +53,5 @@ def reverse(array: list[int]) -> list[int]:
     return array
 
 ```
+
+

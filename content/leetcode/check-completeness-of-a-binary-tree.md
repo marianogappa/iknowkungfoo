@@ -1,7 +1,18 @@
 ---
-title: "Check Completeness Of A Binary Tree"
+title: Check Completeness Of A Binary Tree
 date: 2022-11-20T09:03:20-08:00
 ---
+
+The most straightforward solution is to use BFS in this case.
+
+Strategy to satisfy all rules:
+1) on each level, if a node with right but no left nodes => FALSE!
+2) on each level, index the node slots, and keep a "max_found" and "min_missing". If min_missing < max_found => FALSE!
+3) on each level, if a missing node is found (note it'd be missing on next level), flag it. 2 levels deeper, if there
+   are nodes => FALSE!
+
+
+## Algorithm
 
 ```python
 from typing import Optional
@@ -14,14 +25,6 @@ class TreeNode:
         self.left = left
         self.right = right
 
-# The most straightforward solution is to use BFS in this case.
-#
-# Strategy to satisfy all rules:
-# 1) on each level, if a node with right but no left nodes => FALSE!
-# 2) on each level, index the node slots, and keep a "max_found" and "min_missing". If min_missing < max_found => FALSE!
-# 3) on each level, if a missing node is found (note it'd be missing on next level), flag it. 2 levels deeper, if there
-#    are nodes => FALSE!
-#
 # Time: O(n)
 # Space: O(n)
 class Solution:
@@ -82,3 +85,5 @@ print(Solution().isCompleteTree(TreeNode(1, TreeNode(1, TreeNode(1)), TreeNode(1
 print(Solution().isCompleteTree(TreeNode(1, TreeNode(2, TreeNode(5)), TreeNode(3, TreeNode(7), TreeNode(8)))))
 
 ```
+
+

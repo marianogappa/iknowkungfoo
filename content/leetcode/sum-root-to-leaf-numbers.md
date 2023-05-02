@@ -1,20 +1,21 @@
 ---
-title: "Sum Root To Leaf Numbers"
+title: Sum Root To Leaf Numbers
 date: 2022-11-20T09:03:20-08:00
 ---
 
+Straightforward dfs. No tricks.
+
+## Algorithm
+
 ```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-#
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 # Time: O(n)
 # Space: O(n) hopefully O(height) but there could be a really skewed tree
-#
-# Straightforward dfs. No tricks.
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         return dfs(root, [root])
@@ -51,3 +52,5 @@ def calculate_number(path: list[TreeNode]) -> int:
     return num
 
 ```
+
+

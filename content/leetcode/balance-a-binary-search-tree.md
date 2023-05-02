@@ -1,22 +1,24 @@
 ---
-title: "Balance A Binary Search Tree"
+title: Balance A Binary Search Tree
 date: 2022-11-20T09:03:20-08:00
 ---
 
+Very trivial if O(n) space is allowed: just get the sorted list of vals by running an in-order
+dfs, and construct the BST by continuosly making the root the middle of the array and assigning
+the left subarray to the left child, and the right subarray to the right child.
+
+
+## Algorithm
+
 ```python
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-#
 # Time: O(n)
 # Space: O(n)
-#
-# Very trivial if O(n) space is allowed: just get the sorted list of vals by running an in-order
-# dfs, and construct the BST by continuosly making the root the middle of the array and assigning
-# the left subarray to the left child, and the right subarray to the right child.
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 class Solution:
     def balanceBST(self, root: TreeNode) -> TreeNode:
         return sorted_list_to_bst(in_order_dfs(root, []))
@@ -39,3 +41,5 @@ def sorted_list_to_bst(nums: list[int]) -> Optional[TreeNode]:
     return TreeNode(nums[mid], sorted_list_to_bst(nums[:mid]), sorted_list_to_bst(nums[mid+1:]))
 
 ```
+
+

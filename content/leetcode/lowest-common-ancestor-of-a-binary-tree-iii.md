@@ -1,18 +1,19 @@
 ---
-title: "Lowest Common Ancestor Of A Binary Tree Iii"
+title: Lowest Common Ancestor Of A Binary Tree Iii
 date: 2022-11-20T09:03:20-08:00
 ---
 
+
+
+## Algorithm
+
 ```python
-"""
-# Definition for a Node.
 class Node:
     def _init_(self, val):
         self.val = val
         self.left = None
         self.right = None
         self.parent = None
-"""
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
@@ -30,3 +31,5 @@ class Solution:
                 visited.add(q.val)
 
 ```
+
+

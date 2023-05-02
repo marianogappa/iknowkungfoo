@@ -1,7 +1,17 @@
 ---
-title: "Friends Of Appropriate Ages"
+title: Friends Of Appropriate Ages
 date: 2022-11-20T09:03:20-08:00
 ---
+
+The intuitions of using a Counter and a running sum come naturally, but the logic to apply is
+incredibly tricky!
+
+Note that the third rule can be ignored because it's covered by the broader second rule.
+
+Invert the two first conditions, so that you get the "AND" rules for requesting friendship.
+
+
+## Algorithm
 
 ```python
 from typing import List
@@ -9,13 +19,6 @@ from collections import Counter
 
 # Time: O(n)
 # Space: O(n)
-#
-# The intuitions of using a Counter and a running sum come naturally, but the logic to apply is
-# incredibly tricky!
-#
-# Note that the third rule can be ignored because it's covered by the broader second rule.
-#
-# Invert the two first conditions, so that you get the "AND" rules for requesting friendship.
 class Solution:
     def numFriendRequests(self, ages: List[int]) -> int:
         age_to_count = Counter(ages)
@@ -67,3 +70,5 @@ print(Solution().numFriendRequests([16,17,18]))
 print(Solution().numFriendRequests([20,30,100,110,120]))
 
 ```
+
+

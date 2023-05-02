@@ -1,30 +1,30 @@
 ---
-title: "Valid Square"
+title: Valid Square
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Please note that the trickiness arises from the fact that the
+square needn't be aligned with the cartesian plane.
+
+At that point, a square has four sides whose length must be
+equal and >0, and two diagonals whose length must be
+equal and >0.
+
+It's just that the points aren't sorted so we don't know how to
+pair them as sides or diagonals. Easiest solution to that
+problem is to try all permutations and that's it.
+
+A clever optimisation is figuring out that many of those 24
+permutations result in the same comparisons, so there are
+duplicate calculations. But it won't change the complexity.
+
+## Algorithm
 
 ```python
 from itertools import permutations
 
 # Time: O(1)
 # Space: O(1)
-#
-# Please note that the trickiness arises from the fact that the
-# square needn't be aligned with the cartesian plane.
-#
-# At that point, a square has four sides whose length must be
-# equal and >0, and two diagonals whose length must be
-# equal and >0.
-#
-# It's just that the points aren't sorted so we don't know how to
-# pair them as sides or diagonals. Easiest solution to that
-# problem is to try all permutations and that's it.
-#
-# A clever optimisation is figuring out that many of those 24
-# permutations result in the same comparisons, so there are
-# duplicate calculations. But it won't change the complexity.
-
-
 def euclid(p1: List[int], p2: List[int]) -> int:
     return (p2[0]-p1[0])**2 + (p2[1]-p1[1])**2
 
@@ -38,3 +38,5 @@ class Solution:
         return any([is_square(*points) for points in permutations([p1, p2, p3, p4], 4)])
 
 ```
+
+

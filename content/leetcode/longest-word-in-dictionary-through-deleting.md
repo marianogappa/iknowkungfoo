@@ -1,7 +1,11 @@
 ---
-title: "Longest Word In Dictionary Through Deleting"
+title: Longest Word In Dictionary Through Deleting
 date: 2022-11-20T09:03:20-08:00
 ---
+
+
+
+## Algorithm
 
 ```python
 from typing import List
@@ -34,3 +38,5 @@ print(Solution().findLongestWord('abpcplea', ["ale","apple","monkey","plea"]),  
 print(Solution().findLongestWord('abpcplea', ["a","b","c"]) == 'a') 
 
 ```
+
+

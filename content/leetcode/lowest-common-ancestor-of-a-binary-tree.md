@@ -1,7 +1,13 @@
 ---
-title: "Lowest Common Ancestor Of A Binary Tree"
+title: Lowest Common Ancestor Of A Binary Tree
 date: 2022-11-20T09:03:20-08:00
 ---
+
+Very straightforward: calculate path to both and find last node of common prefix.
+Just remember to backtrack the partial path; every append must be constant time.
+
+
+## Algorithm
 
 ```python
 from typing import Optional
@@ -14,9 +20,6 @@ class TreeNode:
 
 # Time: O(n) unless perfectly balanced tree in which case O(h)
 # Space: O(n) unless perfectly balanced tree in which case O(h)
-#
-# Very straightforward: calculate path to both and find last node of common prefix.
-# Just remember to backtrack the partial path; every append must be constant time.
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         path_to_p = calculate_path(root, p, [root])
@@ -58,3 +61,5 @@ root = TreeNode(3,TreeNode(5, TreeNode(6), TreeNode(2, TreeNode(7), TreeNode(4))
 print(Solution().lowestCommonAncestor(root, root.left, root.right).val)
 
 ```
+
+

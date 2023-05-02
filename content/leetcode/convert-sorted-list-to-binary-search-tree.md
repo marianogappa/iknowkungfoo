@@ -1,30 +1,31 @@
 ---
-title: "Convert Sorted List To Binary Search Tree"
+title: Convert Sorted List To Binary Search Tree
 date: 2022-11-20T09:03:20-08:00
 ---
 
+Each recursive node in the BST should be at the middle of the list.
+So, recursively split the list in half (use slow/fast pointer), use
+middle node (or beginning of right-side list) as root.
+
+Splitting each list is O(n/2), but each time n => n/2. All iterations
+summed up should yield n*logn (similarly to quicksort).
+
+
+## Algorithm
+
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-#
 # Time: O(n*logn)
 # Space: O(n) or O(1) if solution space doesn't count
-#
-# Each recursive node in the BST should be at the middle of the list.
-# So, recursively split the list in half (use slow/fast pointer), use
-# middle node (or beginning of right-side list) as root.
-#
-# Splitting each list is O(n/2), but each time n => n/2. All iterations
-# summed up should yield n*logn (similarly to quicksort).
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 class Solution:
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         if head is None:
@@ -61,3 +62,5 @@ def split_list_in_half_tilt_left(head: Optional[ListNode]) -> list[ListNode]:
     return left, right
 
 ```
+
+

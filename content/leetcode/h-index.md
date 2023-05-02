@@ -1,19 +1,21 @@
 ---
-title: "H Index"
+title: H Index
 date: 2022-11-20T09:03:20-08:00
 ---
+
+The intuitive solution is to sort the citations reverse, but it's n*logn time.
+
+A more clever solution is that since len(citations) <= 5000, we can use linear space
+and bucket sort papers by citations up to len(citations).
+
+At that point, just traverse the buckets in reverse order until max-h is found.
+
+## Algorithm
 
 ```python
 class Solution:
     # Time: O(n)
     # Space: O(n)
-    #
-    # The intuitive solution is to sort the citations reverse, but it's n*logn time.
-    #
-    # A more clever solution is that since len(citations) <= 5000, we can use linear space
-    # and bucket sort papers by citations up to len(citations).
-    #
-    # At that point, just traverse the buckets in reverse order until max-h is found.
     def hIndex(self, citations: List[int]) -> int:
         buckets = [0] * (len(citations)+1)
 
@@ -33,3 +35,5 @@ class Solution:
         # Unreachable
 
 ```
+
+
