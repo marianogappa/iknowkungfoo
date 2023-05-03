@@ -32,6 +32,14 @@ draft: false
 - Need to keep knowledge of who's following who, to fan out tweets.
 - Graph databases seem optimal? But no mature ones, everyone uses RDBMS 🤷‍♂️.
 
+## Discriminate users
+
+- **Famous**: have too many folowers; don't fan out on post. Have their posts on cache and aggregate on read.
+- **Active**: logged in last X days; precalculate timeline on these.
+- **Passive**: haven't logged in last X days. If they log in, calculate timeline on read.
+- **Live**: keep websocket open and push posts (notifications, add to timelines live, etc).
+- **Deactivated**: soft deleted; don't process anything for them.
+
 ## How to shard Tweets? Explore options!
 
 - By Timestamp? 🤔 NOO! Most requested tweets will be in the recent shards, making a few shards ultra hot and all others unused!
