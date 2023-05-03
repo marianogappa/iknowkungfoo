@@ -13,12 +13,13 @@
                 {{ end }}
             </div>
             {{ end }}
-            {{ range slice "coding" "systemDesignQuestions" "systemDesignConcepts" "leetcode" }}
+            {{ range slice "coding" "systemDesignQuestions" "systemDesignConcepts" "leetcode-hard" "leetcode-medium" }}
             <h2>{{ . | title }}</h2>
             <div class="posts-list">
                 {{ range where $.Site.Pages "Type" . }}
-                {{ if and (and (ne .Title "Coding") (ne .Title "SystemDesignConcepts")) (and (ne .Title
-                "SystemDesignQuestions") (ne .Title "Leetcode")) }}
+                {{ $hideList := slice "Coding" "SystemDesignQuestions" "SystemDesignConcepts" "Leetcode" "Leetcode-hard"
+                "Leetcode-medium" }}
+                {{ if not (in $hideList .Title) }}
                 <div><a href="{{ .Permalink }}">{{ .Title }}</a></div>
                 {{end}}
                 {{end}}

@@ -1,11 +1,14 @@
 package main
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 )
 
@@ -39,8 +42,16 @@ func main() {
 		}
 	}
 
+	problems, err := readProblems("leetcodes.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	mkdir(outputPath + "/leetcode-hard")
+	mkdir(outputPath + "/leetcode-medium")
+	mkdir(outputPath + "/leetcode-easy")
+
 	// Walk through the input directory and find all folders with main.py files
-	err := filepath.Walk(inputPath, func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk(inputPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -55,14 +66,21 @@ func main() {
 				}
 				// Get the name of the folder
 				folderName := filepath.Base(path)
+
+				if _, ok := problems[folderName]; !ok {
+					log.Printf("Couldn't find problem with name [%v]!!\n", folderName)
+					return nil
+				}
+				problem := problems[folderName]
+
 				// Create a markdown file with the same name in the output directory
-				mdPath := filepath.Join(outputPath, folderName+".md")
+				mdPath := filepath.Join(outputPath+fmt.Sprintf("/leetcode-%v", strings.ToLower(problem.Difficulty)), folderName+".md")
 				f, err := os.Create(mdPath)
 				if err != nil {
 					log.Fatal(err)
 				}
 				defer f.Close()
-				f.WriteString(createMarkdownContent(snakeToUcfirst(folderName), string(data)))
+				f.WriteString(createMarkdownContent(folderName, string(data), problems))
 			}
 			return filepath.SkipDir // Skip subdirectories
 		}
@@ -75,11 +93,20 @@ func main() {
 	fmt.Println("Done!")
 }
 
-func createMarkdownContent(problemName, pythonFileContent string) string {
+func mkdir(path string) error {
+	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
+		return os.Mkdir(path, os.ModePerm)
+	}
+	return nil
+}
+
+func createMarkdownContent(problemKebabName, pythonFileContent string, problems map[string]Problem) string {
 	aux := `---
 title: %s
 date: 2022-11-20T09:03:20-08:00
 ---
+
+%s
 
 %s
 
@@ -94,7 +121,12 @@ date: 2022-11-20T09:03:20-08:00
 
 	preMarkdown, contents, postMarkdown := splitFile(pythonFileContent)
 
-	return fmt.Sprintf(aux, problemName, preMarkdown, "```", contents, "```", postMarkdown)
+	link := ""
+	if problem, ok := problems[problemKebabName]; ok {
+		link = problem.Link
+	}
+
+	return fmt.Sprintf(aux, snakeToUcfirst(problemKebabName), link, preMarkdown, "```", contents, "```", postMarkdown)
 }
 
 // splitFile splits a string that represents a file with Python code and comments
@@ -158,4 +190,77 @@ func stripPrefix(line string) string {
 	return line
 }
 
-// go run update_leetcodes.go /Users/marianol/Code/leetcode/2022/ ../content/leetcode
+// Problem represents a leetcode problem
+type Problem struct {
+	Number         int     `json:"number"`
+	Name           string  `json:"name"`
+	KebabName      string  `json:"kebabName"`
+	Link           string  `json:"link"`
+	AcceptanceRate float64 `json:"acceptanceRate"`
+	Difficulty     string  `json:"difficulty"`
+}
+
+// readProblems reads a json file into a map of problems
+func readProblems(filename string) (map[string]Problem, error) {
+	// Open the file
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	// Read the file content as bytes
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	// Parse the json array into a slice of anonymous structs
+	var problems []struct {
+		Name           string `json:"name"`
+		AcceptanceRate string `json:"acceptanceRate"`
+		Difficulty     string `json:"difficulty"`
+	}
+	err = json.Unmarshal(data, &problems)
+	if err != nil {
+		return nil, err
+	}
+
+	// Create a map of problems with the name as the key
+	result := make(map[string]Problem)
+	for _, p := range problems {
+		// Split the name by ". " to get the number and the name
+		split := strings.Split(p.Name, ". ")
+		number, err := strconv.Atoi(split[0])
+		if err != nil {
+			return nil, err
+		}
+		name := split[1]
+
+		// Convert the name to kebab case and replace any single quotes with dashes
+		kebabName := strings.ToLower(strings.ReplaceAll(strings.ReplaceAll(name, " ", "-"), "'", "-"))
+
+		// Prepend the leetcode url to the kebab name to get the link
+		link := "https://leetcode.com/problems/" + kebabName
+
+		// Parse the acceptance rate as a float
+		ar, err := strconv.ParseFloat(p.AcceptanceRate[:len(p.AcceptanceRate)-1], 64)
+		if err != nil {
+			return nil, err
+		}
+
+		// Create a problem struct and add it to the map
+		result[kebabName] = Problem{
+			Number:         number,
+			Name:           name,
+			KebabName:      kebabName,
+			Link:           link,
+			AcceptanceRate: ar,
+			Difficulty:     p.Difficulty,
+		}
+	}
+
+	return result, nil
+}
+
+// go run update_leetcodes.go /Users/marianol/Code/leetcode/2022/ ../content/

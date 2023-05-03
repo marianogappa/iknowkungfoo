@@ -1,15 +1,15 @@
 "system design":
-  - title: Best video resource online for System Design
+  - title: SystemDesignInterview Youtube Channel
     permalink: https://www.youtube.com/c/SystemDesignInterview
-  - title: I'll sleep when I'm dead
-    permalink: https://docs.google.com/document/d/1VNoEUzBtyCw0fDw0X_bvuhmCwz1qhNjETPJc5VRZqm8/edit#heading=h.lhqd282syihf
-  - title: Scalable Web Architecture and Distributed Systems
-    permalink: https://aosabook.org/en/v2/distsys.html
+  # - title: I'll sleep when I'm dead
+  #   permalink: https://docs.google.com/document/d/1VNoEUzBtyCw0fDw0X_bvuhmCwz1qhNjETPJc5VRZqm8/edit#heading=h.lhqd282syihf
+  # - title: Scalable Web Architecture and Distributed Systems
+  #   permalink: https://aosabook.org/en/v2/distsys.html
   - title: System Design Primer (donnemartin)
     permalink: https://github.com/donnemartin/system-design-primer/blob/master/README.md
   - title: checkcheckzz's System Design Interview repository
     permalink: https://github.com/checkcheckzz/system-design-interview
-  - title: List of SD questions
-    permalink: https://docs.google.com/spreadsheets/d/17tmeNJfKBvVV3bG2fYlMpqTxUIfljqmnmkaeY6Xekuo/edit#gid=0
+  # - title: List of SD questions
+  #   permalink: https://docs.google.com/spreadsheets/d/17tmeNJfKBvVV3bG2fYlMpqTxUIfljqmnmkaeY6Xekuo/edit#gid=0
   - title: Blind-curated 75 leetcodes list
     permalink: https://leetcode.com/list/xoqag3yj/
