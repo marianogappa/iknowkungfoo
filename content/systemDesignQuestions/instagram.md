@@ -29,6 +29,12 @@ But Instagram/Tiktok is image/video based, so:
 - If elaborating on "The algorithm": need `User Service`, `User cache`, `Trends service`, `Profiling Service`, etc.
 - Then, use the feedback `Post-process service` in the diagram to explain how posts are sent to users timelines. 
 
+## What does Instagram use?
+
+- Data stored in Postgres cluster. IDs generated with Postgres clusters as well ([Sharding IDs at Instagram](https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c)).
+- Django/Python stack for site.
+- From [here](https://medium.com/instagram-engineering/storing-hundreds-of-millions-of-simple-key-value-pairs-in-redis-1091ae80f74c): "All of our Redis deployments run in master-slave, with the slave set to save to disk about every minute."
+
 ## Video
 
 - [codeKarle - Facebook System Design | Instagram System Design | System Design Interview Question](https://www.youtube.com/watch?v=9-hjBGxuiEs)
