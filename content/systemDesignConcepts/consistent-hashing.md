@@ -25,7 +25,7 @@ draft: false
 ## Consistent hashing
 
 - Hash `id` to some large number. Assign hash space to a really large number of LOGICAL shards.
-- Use a consensus-based system (e.g. ZooKeeper/etcd) to map logical shards to a much smaller number of PHYISICAL shards.
+- Use a consensus-based system (e.g. ZooKeeper/etcd) to map logical shards to a much smaller number of PHYSICAL shards.
 - A shard doesn't map to 1 machine but to a number of machines, for replication.
 - As machines added/removed/died, logical shards reassigned to MANY different physical shards.
 - Minimise blast radius strategy: keep each physical shard not too busy, so that they can take extra load when others die. Minimise machines involved in rebalancing, to isolate blast.

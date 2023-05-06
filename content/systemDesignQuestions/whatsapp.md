@@ -36,6 +36,12 @@ draft: false
 - [100B messages sent per day end of 2020](https://techcrunch.com/2020/10/29/whatsapp-is-now-delivering-roughly-100-billion-messages-a-day/)
 - [2014 High Scalability numbers](http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html)
 
+# Discuss issues with replication lag
+
+With strong consistency there's no problem, but with eventual consistency, what happens if the two people chatting are getting served by a primary and a replica, and the replica has a little lag?
+
+Discuss "reading your own writes", "monotonic reads", "consistent prefix reads", "read & write quorum".
+
 # What does Facebook Messenger use?
 
 - In 2018 they migrated [from HBase to MyRocks](https://engineering.fb.com/2018/06/26/core-data/migrating-messenger-storage-to-optimize-performance/) and from spinning disks to flash storage.
