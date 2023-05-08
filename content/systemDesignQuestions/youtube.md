@@ -6,6 +6,9 @@ draft: false
 
 (not a guide for this question; only for how this question is different from all others)
 
+Diagram from [codeKarle](https://www.youtube.com/c/codeKarle)
+![YouTube](/iknowkungfoo/youtube/video-streaming-platform.png)
+
 ## Special functional requirements
 
 - Support all kinds of devices
