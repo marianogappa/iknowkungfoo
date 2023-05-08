@@ -54,6 +54,8 @@ Discuss "reading your own writes", "monotonic reads", "consistent prefix reads",
 
 [Same, but blogpost from FB Engineering](https://engineering.fb.com/2014/10/09/production-engineering/building-mobile-first-infrastructure-for-messenger/)
 
+[Initial Erlang implementation of Facebook Chat - Slide deck](http://www.erlang-factory.com/upload/presentations/31/EugeneLetuchy-ErlangatFacebook.pdf)
+
 ## What does Slack use?
 
 - Migrated from MySQL to Vitess.
