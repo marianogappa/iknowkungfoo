@@ -53,5 +53,6 @@ Options:
 
 Nodes get added & removed all the time, so how to keep knowledge of who owns which key?
 
+- Every node heartbeats every node? 😱 scales quadratically! NO!
 - Gossip protocol (e.g. Cassandra).
 - External service implementing Raft/Paxos consensus (e.g. ZooKeeper).
