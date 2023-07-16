@@ -40,9 +40,9 @@ def kahn_topological_sort(graph):
         # reduce the in-degree of its dependencies by one
         for dependency in graph[current_vertex]:
             indegree[dependency] -= 1
-        # if the in-degree becomes zero, add it to the queue
-        if indegree[dependency] == 0:
-            queue.append(dependency)
+            # if the in-degree becomes zero, add it to the queue
+            if indegree[dependency] == 0:
+                queue.append(dependency)
   
     # Optional: if there can be a cycle check it by comparing these lengths:
     if len(order) < len(graph):
