@@ -64,6 +64,11 @@ func main() {
 				if err != nil {
 					log.Fatal(err)
 				}
+
+				if isExerciseNotReadyForPublish(string(data)) {
+					return nil
+				}
+
 				// Get the name of the folder
 				folderName := filepath.Base(path)
 
@@ -91,6 +96,18 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println("Done!")
+}
+
+func isExerciseNotReadyForPublish(content string) bool {
+	firstLine := strings.ToLower(strings.Split(content, "\n")[0])
+	notReadyMarkers := []string{"wip", "not ready", "unpublished"}
+
+	for _, marker := range notReadyMarkers {
+		if strings.Contains(firstLine, marker) {
+			return true
+		}
+	}
+	return false
 }
 
 func mkdir(path string) error {
