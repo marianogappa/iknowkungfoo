@@ -37,7 +37,6 @@ class Solution:
             product[i] *= running_product
 
         return product
-
 ```
 
 

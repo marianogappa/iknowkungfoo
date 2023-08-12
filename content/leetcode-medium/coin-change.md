@@ -55,7 +55,6 @@ class Solution:
 
         # Otherwise return it.
         return minCoins[amount]
-
 ```
 
 

@@ -44,7 +44,6 @@ class Solution:
             combinations = new_combinations
 
         return combinations
-
 ```
 
 

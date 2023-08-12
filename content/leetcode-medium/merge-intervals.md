@@ -37,7 +37,6 @@ def is_overlapping(i1: list[int], i2: list[int]) -> bool:
 # The min function isn't necessary because we know i1[0] <= i2[0] (because of sorting)
 def merge_intervals(i1: list[int], i2: list[int]) -> list[int]:
     return [min(i1[0], i2[0]), max(i1[1], i2[1])]
-
 ```
 
 

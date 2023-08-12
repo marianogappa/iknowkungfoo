@@ -171,8 +171,8 @@ func splitFile(pythonFileContent string) (preMarkdown, contents, postMarkdown st
 	preMarkdown = strings.Join(stripPrefixes(lines[:i]), "\n")
 
 	// Find the index of the last line that is not post-markdown
-	j := len(lines) - 1
-	for j >= i && strings.HasPrefix(lines[j], "# ") {
+	j := len(lines) - 2 // -2 because the last line is always empty
+	for j >= i && strings.HasPrefix(lines[j], "#") {
 		j--
 	}
 
@@ -181,10 +181,6 @@ func splitFile(pythonFileContent string) (preMarkdown, contents, postMarkdown st
 
 	// Join the contents lines
 	contents = strings.Join(lines[i:j+1], "\n")
-
-	// Remove the hash and space prefix from pre-markdown and post-markdown
-	preMarkdown = strings.Replace(preMarkdown, "# ", "", 1)
-	postMarkdown = strings.Replace(postMarkdown, "# ", "", 1)
 
 	return
 }
@@ -278,6 +274,13 @@ func readProblems(filename string) (map[string]Problem, error) {
 	}
 
 	return result, nil
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 // go run update_leetcodes.go /Users/marianol/Code/leetcode/2022/ ../content/
