@@ -27,16 +27,21 @@ Examples:
 
 ```python
 class UnionFind: # Used to keep track of disjointed sets on graphs.
-    parent: list[int] = [] # Sets are trees. Each vertex has a parent.
-    size: list[int] = [] # Optimization: on union, larger set becomes parent.
+    parent: list[int] # Sets are trees. Each vertex has a parent.
+    size: list[int] # Optimization: on union, larger set becomes parent.
     idx: dict[any, int] # Optional: elements are mapped to int "labels".
+
+    def __init__(self):
+        self.parent = []
+        self.size = []
+        self.idx = {}
 
     # Add a new vertex to the forest, as a new tree of size 1
     def add(self, vertex: any):
         idx = len(self.parent) # Next available idx to use for this vertex.
         self.idx[vertex] = idx
         self.parent.append(idx) # New vertex is its own parent in own tree.
-        self.size[idx] = 1 # Tree of one vertex: size = 1
+        self.size.append(1) # Tree of one vertex: size = 1
 
     # Union two vertices: if they belong to != sets, make larger parent
     # of the smaller. Keep track of sizes.
@@ -47,10 +52,10 @@ class UnionFind: # Used to keep track of disjointed sets on graphs.
         if set1 != set2:
             if self.size[set1] > self.size[set2]:
                 self.size[set1] += self.size[set2]
-                self.parent[set2] = self.set1
+                self.parent[set2] = set1
             else:
                 self.size[set2] += self.size[set1]
-                self.parent[set1] = self.set2
+                self.parent[set1] = set2
 
     def _find(self, idx: int) -> int:
         return self._find(self.parent[idx]) if self.parent[idx] != idx else idx
