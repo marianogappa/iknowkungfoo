@@ -239,6 +239,29 @@ func readProblems(filename string) (map[string]Problem, error) {
 		return nil, err
 	}
 
+	// Add some manual entries that don't seem to be on the API
+	problems = append(problems, []struct {
+		Name           string `json:"name"`
+		AcceptanceRate string `json:"acceptanceRate"`
+		Difficulty     string `json:"difficulty"`
+	}{
+		{
+			Name:           "208. Implement Trie (Prefix Tree)",
+			AcceptanceRate: "64.0%",
+			Difficulty:     "Medium",
+		},
+		{
+			Name:           "304. Range Sum Query 2D - Immutable",
+			AcceptanceRate: "53.6%",
+			Difficulty:     "Medium",
+		},
+		{
+			Name:           "8. String to Integer (atoi)",
+			AcceptanceRate: "16.8%",
+			Difficulty:     "Medium",
+		},
+	}...)
+
 	// Create a map of problems with the name as the key
 	result := make(map[string]Problem)
 	for _, p := range problems {
@@ -251,7 +274,15 @@ func readProblems(filename string) (map[string]Problem, error) {
 		name := split[1]
 
 		// Convert the name to kebab case and replace any single quotes with dashes
-		kebabName := strings.ToLower(strings.ReplaceAll(strings.ReplaceAll(name, " ", "-"), "'", "-"))
+		kebabName := name
+		kebabName = strings.ToLower(kebabName)
+		kebabName = strings.ReplaceAll(kebabName, " (", "-")
+		kebabName = strings.ReplaceAll(kebabName, ") ", "-")
+		kebabName = strings.ReplaceAll(kebabName, " - ", "-")
+		kebabName = strings.ReplaceAll(kebabName, " ", "-")
+		kebabName = strings.ReplaceAll(kebabName, "'", "-")
+		kebabName = strings.ReplaceAll(kebabName, "(", "-")
+		kebabName = strings.ReplaceAll(kebabName, ")", "")
 
 		// Prepend the leetcode url to the kebab name to get the link
 		link := "https://leetcode.com/problems/" + kebabName
