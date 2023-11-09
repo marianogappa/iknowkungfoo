@@ -26,16 +26,14 @@ def kahn_topological_sort(graph):
         for dependency in graph[vertex]:
             indegree[dependency] += 1
 
-    queue = []
     # add vertices with zero in-degree to the queue
-    for u in indegree:
-        if indegree[u] == 0:
-            queue.append(u)
+    queue = deque([v for v, count in indegree.items() if count == 0])
+
     # process vertices from the queue
     order = []
     while queue:
         # dequeue a vertex and add it to the order
-        current_vertex = queue.pop(0)
+        current_vertex = queue.popleft()
         order.append(current_vertex)
         # reduce the in-degree of its dependencies by one
         for dependency in graph[current_vertex]:
